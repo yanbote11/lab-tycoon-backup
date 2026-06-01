@@ -1,0 +1,91 @@
+{
+  "name": "LabTycoon",
+  "tree": {
+    "$className": "DataModel",
+
+    "ReplicatedStorage": {
+      "$className": "ReplicatedStorage",
+      "RojoBackupStatus": {
+        "$path": "src/ReplicatedStorage/RojoBackupStatus"
+      },
+      "SharedSource": {
+        "$className": "Folder",
+        "Datas": {
+          "$className": "Folder",
+          "ProfileTemplate": {
+            "$path": "src/ReplicatedStorage/SharedSource/Datas/ProfileTemplate.luau"
+          },
+          "VirusData": {
+            "$path": "src/ReplicatedStorage/SharedSource/Datas/VirusData.luau"
+          },
+          "LabUpgradesData": {
+            "$path": "src/ReplicatedStorage/SharedSource/Datas/LabUpgradesData.luau"
+          }
+        },
+        "Configs": {
+          "$className": "Folder",
+          "VirusConfig": {
+            "$path": "src/ReplicatedStorage/SharedSource/Configs/VirusConfig.luau"
+          },
+          "ZoneConfig": {
+            "$path": "src/ReplicatedStorage/SharedSource/Configs/ZoneConfig.luau"
+          }
+        }
+      }
+    },
+
+    "ServerScriptService": {
+      "$className": "ServerScriptService",
+      "ServerSource": {
+        "$className": "Folder",
+        "Server": {
+          "$className": "Folder",
+          "VirusService": {
+            "$path": "src/ServerScriptService/ServerSource/Server/VirusService.luau"
+          },
+          "LabUpgradeService": {
+            "$path": "src/ServerScriptService/ServerSource/Server/LabUpgradeService.luau"
+          },
+          "DataController": {
+            "$path": "src/ServerScriptService/ServerSource/Server/DataController.luau"
+          }
+        }
+      },
+      "ServerBootstrapper": {
+        "$path": "src/ServerScriptService/ServerBootstrapper.server.luau"
+      }
+    },
+
+    "StarterPlayer": {
+      "$className": "StarterPlayer",
+      "StarterPlayerScripts": {
+        "$className": "StarterPlayerScripts",
+        "ClientSource": {
+          "$className": "Folder",
+          "Client": {
+            "$className": "Folder",
+            "VirusController": {
+              "$path": "src/StarterPlayer/StarterPlayerScripts/ClientSource/Client/VirusController.luau"
+            },
+            "LabUpgradeController": {
+              "$path": "src/StarterPlayer/StarterPlayerScripts/ClientSource/Client/LabUpgradeController.luau"
+            },
+            "DataController": {
+              "$path": "src/StarterPlayer/StarterPlayerScripts/ClientSource/Client/DataController.luau"
+            }
+          }
+        }
+      }
+    },
+
+    "StarterGui": {
+      "$className": "StarterGui",
+      "LabTycoonUI": {
+        "$className": "ScreenGui",
+        "UILogic": {
+          "$path": "src/StarterGui/LabTycoonUI/UILogic.client.luau"
+        }
+      }
+    }
+  }
+}
