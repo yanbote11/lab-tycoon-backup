@@ -76,3 +76,39 @@
 - UI refresh loop remains active and should be profiled after playtest.
 - `VirusArtConfig.luau` is currently staged as added but deleted in the working tree.
 - No architecture documentation update is required unless the team decides the UI rewrite or source extension policy is a major system change.
+# CHANGELOG.md
+
+## 2026-06-02
+
+### Today's Additions
+- Added `VirusVisualIdentity` module for centralized virus presentation metadata.
+- Added lore, mutation classifications, rarity visual rules, asset plans, and image-generation prompts for all active viruses.
+- Added visual rarity aliases for existing tiers: Celestial as Secret, Transcendent as Divine.
+- Added DNA tree title bar and bonus summary display.
+- Added/normalized authored Quick Roll lab upgrade card.
+
+### Changes
+- Roll result, compact virus display, inventory rows, and chamber hover tooltips now use visual identity metadata.
+- Chamber hover tooltips now show player-facing lore and rewards only.
+- DNA tree header now shows bonuses gained from unlocked DNA nodes.
+- DNA tree colors, connectors, node template, info panel, and close button were restyled.
+- Lab upgrade cards now appear in order: Incubator, Sterile Conditions, Auto Roll, Quick Roll, Virus Slot, Auto Roll toggle.
+- Luck Boost II now matches the standard DNA tree node style.
+
+### Fixes
+- Fixed chamber slot counter showing uncapped max slots such as `10 / 11`.
+- Fixed Virus Slot card being hidden by Quick Roll.
+- Fixed long virus tooltip text overflowing outside the border.
+- Fixed DNA tree missing title/stats bar warning.
+- Removed internal theme/glow/hover metadata from player-facing tooltip text.
+
+### Performance Improvements
+- Kept virus identity changes data-driven and static.
+- Avoided new particles, permanent glow systems, heavy VFX, and visual loops.
+- Compact/list virus styling avoids gradients where unnecessary.
+- Tooltip sizing runs only on hover.
+
+### Notes
+- No save data, virus odds, rewards, or inventory schema were changed.
+- No rolling effects, encyclopedia expansion, inventory expansion, or world decorations were added.
+- `ARCHITECTURE.md` does not need changes; no major system was added, removed, or fundamentally restructured.
