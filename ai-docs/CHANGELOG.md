@@ -112,3 +112,49 @@
 - No save data, virus odds, rewards, or inventory schema were changed.
 - No rolling effects, encyclopedia expansion, inventory expansion, or world decorations were added.
 - `ARCHITECTURE.md` does not need changes; no major system was added, removed, or fundamentally restructured.
+# CHANGELOG.md
+
+## Today's Additions
+
+- Added rarity-scaled roll suspense animation before final virus reveal.
+- Added roulette-style virus name cycling with deceleration.
+- Added progress/lock-in presentation before showing the final roll result.
+- Added mobile-reduced roulette step counts.
+- Added expected reveal delay helper for compact UI timing.
+
+## Changes
+
+- Main roll result flow now waits for suspense animation before displaying the final virus.
+- Main roll button now shows `REVEALING...` and stays disabled during reveal suspense.
+- Compact roll button now also stays in `REVEALING...` until the suspense window completes.
+- Existing reveal effects remain modular and temporary.
+
+## Fixes
+
+- Fixed roll results feeling instant.
+- Fixed roll effects ending too quickly.
+- Fixed compact roll UI returning to `ROLL` before the visual reveal completed.
+- Verified temporary roll visual cleanup after a live roll.
+
+Earlier session fixes:
+- Fixed DNA tree header to show earned SP bonuses.
+- Fixed Luck Boost II styling mismatch.
+- Fixed chamber tooltip overflow for longer virus names/descriptions.
+- Removed internal theme/glow metadata from player-facing virus hover text.
+- Fixed chamber slot display showing `10/11` when max is 10.
+- Restored lab virus slot upgrade visibility and Quick Roll visual consistency.
+
+## Performance Improvements
+
+- Roll visuals remain client-side only.
+- No roll odds, rewards, save data, or server validation changed.
+- No permanent particle systems added.
+- No always-running roll visual loops added.
+- Temporary UI/effect objects are cleaned up after reveal.
+- Mobile fallback reduces roulette workload.
+
+## Notes
+
+- Roll audio hooks are present but still need real sound asset IDs.
+- High-rarity reveal polish should remain capped, temporary, and mobile-reduced.
+- Do not proceed to Piece 6 until Piece 5 is approved after Studio testing.
