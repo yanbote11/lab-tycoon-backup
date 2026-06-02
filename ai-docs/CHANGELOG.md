@@ -158,3 +158,60 @@ Earlier session fixes:
 - Roll audio hooks are present but still need real sound asset IDs.
 - High-rarity reveal polish should remain capped, temporary, and mobile-reduced.
 - Do not proceed to Piece 6 until Piece 5 is approved after Studio testing.
+# CHANGELOG.md
+
+## 2026-06-02
+
+### Today's Additions
+
+- Added `VirusVisualIdentity` module for centralized virus presentation metadata.
+- Added lore, mutation classifications, rarity visual rules, asset plans, and image-generation prompts.
+- Added rarity-scaled roll suspense animation before final virus reveal.
+- Added roulette-style virus name cycling with deceleration.
+- Added Quick Roll UI injection when authored UI is missing.
+- Added Auto Equip Best button in virus inventory UI.
+- Added DNA tree title bar and unlocked bonus summary display.
+
+### Changes
+
+- World virus display updates now sync from server equipment commit events instead of client polling.
+- Roll result flow now waits for reveal suspense before showing the final virus.
+- Main and compact roll buttons show revealing state until reveal completes.
+- Roll result, compact display, inventory rows, and chamber tooltips use visual identity metadata.
+- Lab upgrade cards now separate Quick Roll and Virus Slot cards.
+- Chamber UI visually caps terrain slots at 10.
+- Superbullet logging is disabled or reduced when backend is unavailable in Studio.
+- Expensive tycoon construction unlock visuals are skipped.
+- `VirusArtConfig` was removed from Rojo project mapping.
+
+### Fixes
+
+- Fixed stale `reportedEquippedByPlayer` reference in `LabPlotAndVirusWorldService`.
+- Fixed Chambers list rendering empty despite saved inventory.
+- Fixed missing virus definitions creating broken inventory rows.
+- Fixed chamber slot counter showing uncapped values.
+- Fixed Virus Slot card visibility conflict with Quick Roll.
+- Fixed chamber tooltip overflow.
+- Fixed compact roll UI returning to `ROLL` before reveal completion.
+- Fixed repeated Superbullet HTTP/log spam during Studio testing.
+- Added safe guards for missing tycoon folders and optional GUI templates.
+
+### Performance Improvements
+
+- Removed client-side world display polling.
+- Reduced world virus display visual complexity.
+- Disabled excessive tycoon/display lighting.
+- Removed heavy construction animation/effect path.
+- Reduced UI safety refresh frequency.
+- Avoided new permanent `RenderStepped` logic, polling loops, particles, or looping UI animations.
+- Reveal effects are temporary client-side UI work and use reduced mobile workload.
+
+### Notes
+
+- Roblox Studio remains the source of truth.
+- No save data schema, virus odds, rewards, or inventory schema were intentionally changed.
+- World virus display still needs retesting after `My Tycoon` asset structure is fixed.
+- Missing optional GUI templates still produce warnings but are safely skipped.
+- Mobile/tablet validation is still needed.
+- Roll audio hooks exist but need real sound asset IDs.
+- `ARCHITECTURE.md` does not need updates because no major system was added, removed, or fundamentally restructured.
