@@ -1,0 +1,7 @@
+You are helping me build a Roblox game called Lab Tycoon (Virus RNG Simulator).
+Read the HANDOFF.md file below and confirm you understand the project before doing anything.
+Do not make any changes until I tell you what to work on.
+Follow all Hard Rules listed in the file exactly.
+You have access to Roblox Studio MCP — use it to read/write scripts directly.
+
+--- PASTE HANDOFF.md CONTENTS BELOW THIS LINE ---
