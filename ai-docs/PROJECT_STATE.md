@@ -140,3 +140,60 @@ Active gameplay virus data:
 
 ```txt
 ReplicatedStorage.Modules.VirusData
+# PROJECT_STATE.md
+
+## Current Stable State
+
+Virus RNG is stable through Piece 5 rolling polish.
+
+Completed systems:
+- Piece 3 safe UI polish.
+- Piece 4 Virus Visual Identity support.
+- Piece 5 rolling presentation polish.
+
+The rolling system remains server-authoritative. Roll odds, reward granting, inventory updates, save data, and cooldown validation were not changed.
+
+Current roll presentation:
+- Roll button gives pre-roll feedback.
+- Rolling state shows lightweight scanning feedback.
+- Server result is received normally.
+- Client delays final display with a rarity-scaled roulette/suspense animation.
+- Final result reveal uses rarity-scaled glow, flash, particle, and camera shake rules where allowed.
+- Temporary roll effects clean up after completion.
+- Mobile receives reduced visual intensity.
+
+DNA tree UI is stable:
+- Header displays bonuses gained from spent SP.
+- Luck Boost II matches the tree styling.
+- Invalid strength/agility/intelligence header stats were removed.
+
+Virus chamber/UI state:
+- Chamber slot display respects the 10-slot max.
+- Virus hover tooltips wrap longer titles/descriptions.
+- Internal visual metadata such as theme/glow is hidden from players.
+
+## Current Priorities
+
+1. Test Piece 5 rolling flow in Roblox Studio on desktop and mobile.
+2. Add real rarity-based audio assets for roll anticipation and reveal.
+3. Prepare higher-rarity reveal polish without adding permanent or heavy effects.
+
+## Known Issues
+
+- Roll sound hooks exist but sound asset IDs are not assigned.
+- Virus artwork remains placeholder/planned.
+- High-rarity reveal effects are lightweight and not final cinematic assets.
+- Existing unrelated missing-template/backend warnings may appear in playtest output.
+
+## Current Source of Truth
+
+Live Roblox Studio project is the source of truth.
+
+Relevant current scripts:
+- `ReplicatedStorage.ClientSource.Client.RollEffects`
+- `StarterGui.LabTycoonUI.UILogic`
+- `ReplicatedStorage.Modules.VirusVisualIdentity`
+- `ReplicatedStorage.Modules.VirusData`
+- `ServerScriptService.ServerSource.Server.VirusService`
+
+Do not modify `ARCHITECTURE.md` unless a major system is added, removed, or fundamentally changed.
