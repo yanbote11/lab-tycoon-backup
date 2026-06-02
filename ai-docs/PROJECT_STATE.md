@@ -1,81 +1,72 @@
-# Virus RNG Project State
+# PROJECT_STATE.md
 
-## Current Status
+## Current Stable State
+
+Project: Roblox Luau **Virus RNG / Lab Tycoon simulator**
 
 The game is playable and under active development.
 
-Core systems currently implemented:
+Core gameplay systems currently implemented and expected to remain intact:
 
 - Rolling system
 - Virus inventory
 - Equip / Unequip
 - Virus world display
-- Data saving
-- Upgrades
-- Rebirth
-
-## Current Stable Backup
-
-VirusRNG_[LATEST_WORKING_BACKUP_NAME]
-
-## Current Priorities
-
-1. Reduce lag and improve performance
-2. Mobile optimization
-3. UI improvements
-4. Additional gameplay content
-
-## Known Issues
-
-- Some systems still use polling loops
-- World virus display may need optimization
-- Mobile performance not fully tested
-
-## Source of Truth
-
-Current Roblox Studio project is the source of truth.
-
-GitHub documentation should reflect Studio.
-
-Local ZIP backups are used for rollback.
-
-# PROJECT_STATE.md
-
-## Current Stable State
-
-Virus RNG is in a performance-stabilized state after Piece 2 and a safe UI polish pass in Piece 3.
-
-Core gameplay systems remain intact:
-- Rolling
-- Virus inventory data
-- Equipped virus state
-- Saving/profile flow
+- Data saving / profile flow
 - Lab upgrades
-- Rebirth/DNA systems
+- Rebirth / DNA systems
 - Chambers UI
 
-Piece 2 focused on lag and bug fixes:
+The project is currently in a **performance-stabilized state** after Piece 2 and a safe UI polish pass in Piece 3.
+
+## Recent Completed Work
+
+### Piece 2 — Lag and Bug Fixes
+
+Piece 2 focused on reducing lag and stabilizing core behavior.
+
+Completed changes:
+
 - Removed client-side world display polling.
 - Shifted world display updates to server-side equipment commit events.
 - Reduced world virus display visual cost.
 - Disabled excessive tycoon/display lighting.
 - Removed Superbullet logging spam when backend is unavailable.
 - Disabled heavy construction unlock animation/effect path.
-- Fixed Chambers/inventory UI rendering issues.
+- Fixed Chambers / inventory UI rendering issues.
 
-Piece 3 focused only on safe UI polish:
-- Added a shared static UI palette and helpers in `UILogic`.
-- Improved main roll UI, stat/currency display, Chambers rows, buttons, and compact UI.
-- No new RenderStepped logic, particles, looping animations, or heavy repeated-card effects were added.
+### Piece 3 — Safe UI Polish
+
+Piece 3 focused only on safe visual improvements.
+
+Completed changes:
+
+- Added shared static UI palette and helpers in `UILogic`.
+- Improved main roll UI.
+- Improved stat and currency display.
+- Improved Chambers rows.
+- Improved button styling.
+- Improved compact UI layout.
+
+Important restriction:
+
+- No new `RenderStepped` logic was added.
+- No particles were added.
+- No looping animations were added.
+- No heavy repeated-card visual effects were added.
 
 ## Current Priorities
 
 1. Fix `My Tycoon` asset structure so it contains the expected `Tycoon` folder.
-2. Re-test world virus display after tycoon asset structure is fixed.
-3. Run mobile/tablet UI testing in Studio emulator.
-4. Continue to Piece 4 only after approval.
+2. Re-test world virus display after the tycoon asset structure is fixed.
+3. Resolve current git state issues before continuing major work.
+4. Playtest changed UI scripts in Roblox Studio.
+5. Run mobile/tablet UI testing in Studio emulator.
+6. Continue to Piece 4 only after approval.
 
 ## Known Issues
+
+### Asset / Template Issues
 
 - `My Tycoon` asset is missing the expected `Tycoon` folder.
 - `CollectorGui` template is missing and currently skipped safely.
@@ -85,14 +76,24 @@ Piece 3 focused only on safe UI polish:
   - `RebirthGui`
   - `LevelSystemUI`
   - `NotifierGui`
-- Superbullet debugger logging is disabled when its backend is unreachable.
+
+### Performance / UI Issues
+
+- Some systems may still use polling loops.
+- World virus display may need additional optimization.
+- Mobile performance has not been fully tested.
 - Top currency UI may need mobile-specific layout refinement.
 
-## Current Source Of Truth
+### Git / Repo Issues
 
-Roblox Studio live project is the source of truth.
+- Dirty git state with mixed staged and unstaged changes.
+- `VirusArtConfig.luau` is staged but missing from the working tree and removed from Rojo mapping.
+- Need to confirm canonical script extension/source: `.lua` vs `.luau`.
 
-Important current scripts:
+## Important Current Scripts
+
+Primary scripts to inspect when continuing development:
+
 - `StarterGui.LabTycoonUI.UILogic`
 - `ServerScriptService.ServerBootstrapper`
 - `ServerScriptService.LabPlotAndVirusWorldService`
@@ -100,4 +101,11 @@ Important current scripts:
 - `ServerScriptService.ServerSource.Server.TycoonService.Components.Others.TycoonAssigner`
 - `ReplicatedStorage.Modules.VirusData`
 
-Documentation should reflect the live Studio state after each completed piece.
+## Source of Truth
+
+Roblox Studio live project is the current source of truth.
+
+Local source path:
+
+```txt
+C:\Users\yanbo\OneDrive\Desktop\virus-rng-simulator\src
