@@ -68,3 +68,31 @@
 - World virus display still needs re-test after fixing the `My Tycoon` asset structure.
 - Missing optional GUI templates still produce warnings but are safely skipped.
 - No architecture documentation update is required; no major system was added, removed, or fundamentally redesigned.
+# CHANGELOG.md
+
+## Today's Additions
+- Added functional UI logic for Lab Capacity display/purchase paths.
+- Added Quick Roll UI injection when the authored frame is missing.
+- Added Auto Equip Best button in virus inventory UI.
+- Added compact virus display updates after rolls.
+
+## Changes
+- Reworked `UILogic` toward direct RemoteEvents/Knit controller usage.
+- Updated slot count calculation to use effective combined profile data.
+- Removed `VirusArtConfig` from Rojo project mapping.
+- Removed ServerBootstrapper environment lighting/post-processing initialization.
+
+## Fixes
+- Improved roll cooldown handling and failure warnings.
+- Improved compact roll connection cleanup.
+- Improved upgrade button max/locked states.
+- Reduced dependency on missing/deleted visual config module.
+
+## Performance Improvements
+- Removed heavy UI animation/glassmorphism styling pass.
+- Removed server bootstrap lighting/effects initialization.
+- UI refresh loop remains active and should be profiled after playtest.
+
+## Notes
+- `VirusArtConfig.luau` is currently staged as added but deleted in the working tree.
+- No architecture doc update is recommended unless the team decides the UI rewrite or source extension policy is a major system change.
