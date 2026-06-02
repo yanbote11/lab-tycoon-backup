@@ -17,13 +17,13 @@ Core gameplay systems currently implemented and expected to remain intact:
 - Rebirth / DNA systems
 - Chambers UI
 
-The project is currently in a **performance-stabilized state** after Piece 2 and a safe UI polish pass in Piece 3.
+Virus RNG has completed performance stabilization, safe UI polish, and visual identity improvements for viruses, Chambers, Lab upgrades, and the DNA tree.
+
+Gameplay odds, rewards, inventory data, and save data were not intentionally changed.
 
 ## Recent Completed Work
 
-### Piece 2 — Lag and Bug Fixes
-
-Piece 2 focused on reducing lag and stabilizing core behavior.
+### Performance Stabilization
 
 Completed changes:
 
@@ -35,9 +35,7 @@ Completed changes:
 - Disabled heavy construction unlock animation/effect path.
 - Fixed Chambers / inventory UI rendering issues.
 
-### Piece 3 — Safe UI Polish
-
-Piece 3 focused only on safe visual improvements.
+### Safe UI Polish
 
 Completed changes:
 
@@ -47,6 +45,9 @@ Completed changes:
 - Improved Chambers rows.
 - Improved button styling.
 - Improved compact UI layout.
+- Added Quick Roll UI injection when the authored frame is missing.
+- Added Auto Equip Best button in virus inventory UI.
+- Added compact virus display updates after rolls.
 
 Important restriction:
 
@@ -55,14 +56,31 @@ Important restriction:
 - No looping animations were added.
 - No heavy repeated-card visual effects were added.
 
+### Virus Visual Identity / DNA UI
+
+Completed changes:
+
+- Added `ReplicatedStorage.Modules.VirusVisualIdentity`.
+- Centralized virus visual metadata, lore, mutation classifications, rarity styling, asset plans, and image-generation prompts.
+- Kept active gameplay virus data centralized in `ReplicatedStorage.Modules.VirusData`.
+- Updated Lab UI so Quick Roll and Virus Slot appear as separate uniform upgrade cards.
+- Visually capped Chamber UI at 10 terrain slots.
+- Updated DNA tree with:
+  - Styled title bar
+  - DNA-themed nodes/connectors
+  - Header summary of unlocked DNA bonuses
+
 ## Current Priorities
 
 1. Fix `My Tycoon` asset structure so it contains the expected `Tycoon` folder.
 2. Re-test world virus display after the tycoon asset structure is fixed.
 3. Resolve current git state issues before continuing major work.
 4. Playtest changed UI scripts in Roblox Studio.
-5. Run mobile/tablet UI testing in Studio emulator.
-6. Continue to Piece 4 only after approval.
+5. Validate all updated UI on desktop and mobile/tablet Studio emulator.
+6. Generate/import real virus artwork and assign asset IDs in `VirusVisualIdentity`.
+7. Replace manual upgrade card positioning with a reusable layout system.
+8. Prepare lightweight selected-preview/reveal effects for higher-rarity viruses.
+9. Continue to the next development piece only after approval.
 
 ## Known Issues
 
@@ -76,6 +94,7 @@ Important restriction:
   - `RebirthGui`
   - `LevelSystemUI`
   - `NotifierGui`
+- Optional missing UI/assets still produce unrelated warnings in console.
 
 ### Performance / UI Issues
 
@@ -83,6 +102,15 @@ Important restriction:
 - World virus display may need additional optimization.
 - Mobile performance has not been fully tested.
 - Top currency UI may need mobile-specific layout refinement.
+- Lab upgrade cards are manually positioned.
+- DNA tree bonus summary depends on a client-side skill bonus map.
+- Secret/Divine heavy reveal effects are not implemented.
+
+### Art / Visual Identity Issues
+
+- Virus artwork is still placeholder metadata only.
+- Real virus artwork needs to be generated/imported.
+- Asset IDs need to be assigned in `VirusVisualIdentity`.
 
 ### Git / Repo Issues
 
@@ -92,7 +120,7 @@ Important restriction:
 
 ## Important Current Scripts
 
-Primary scripts to inspect when continuing development:
+Primary scripts/modules to inspect when continuing development:
 
 - `StarterGui.LabTycoonUI.UILogic`
 - `ServerScriptService.ServerBootstrapper`
@@ -100,12 +128,15 @@ Primary scripts to inspect when continuing development:
 - `StarterPlayer.StarterPlayerScripts.WorldVirusDisplayController`
 - `ServerScriptService.ServerSource.Server.TycoonService.Components.Others.TycoonAssigner`
 - `ReplicatedStorage.Modules.VirusData`
+- `ReplicatedStorage.Modules.VirusVisualIdentity`
+- `ReplicatedStorage.SharedSource.Datas.SkillTreeData.Trees.VirusLab`
+- `ReplicatedStorage.ClientSource.Client.SkillTreeController.Components.Others.StatsDisplay`
 
 ## Source of Truth
 
 Roblox Studio live project is the current source of truth.
 
-Local source path:
+Active gameplay virus data:
 
 ```txt
-C:\Users\yanbo\OneDrive\Desktop\virus-rng-simulator\src
+ReplicatedStorage.Modules.VirusData
