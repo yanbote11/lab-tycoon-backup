@@ -215,3 +215,42 @@ Earlier session fixes:
 - Mobile/tablet validation is still needed.
 - Roll audio hooks exist but need real sound asset IDs.
 - `ARCHITECTURE.md` does not need updates because no major system was added, removed, or fundamentally restructured.
+- 
+# CHANGELOG.md
+
+## 2026-06-03
+
+### Additions
+- Added lightweight static lab/biohazard environmental polish in organized `EnvironmentalPolish` folders.
+- Added prompt-driven lab entrance doors for tycoon lab buildings.
+- Added `LabEntranceDoorController` for centralized door prompt/tween handling.
+- Added `FootstepSoundSilencer` to mute default Roblox running/climbing footstep audio.
+
+### Changes
+- Repositioned and aligned lab buildings, home pads, and start markers so building rows line up with roads.
+- Limited `Open Lab` BillboardGui visibility distance.
+- Updated roll VFX/audio handling to use capped, temporary effects.
+- Updated particle emitter helper with clamped/mobile-scaled emit counts.
+- Updated sound helper with bounded load wait and cleanup.
+
+### Fixes
+- Fixed building placement issues where labs were partially in the road.
+- Fixed misaligned house/building row.
+- Fixed blue door panes blocking player entry.
+- Fixed excessive across-map lab label visibility.
+- Fixed `TycoonSounds` initialization typo.
+- Fixed annoying fuzzy movement/footstep audio from default character sounds.
+
+### Performance Improvements
+- No permanent particles added.
+- No new every-frame remotes added.
+- Roll sounds are capped, debounced, and cleaned up.
+- Roll particles are capped and reduced on mobile.
+- Door logic uses prompts/tweens instead of loops.
+- Environmental polish is static, anchored, low-count, and script-free.
+- Temporary character sound connection is cleaned on respawn.
+
+### Notes
+- Final cleanup pass made no additional edits.
+- Manual testing still recommended for every door, mobile UI, auto-roll button, rejoin persistence, and high-rarity reveal behavior.
+- No architecture document update required.
