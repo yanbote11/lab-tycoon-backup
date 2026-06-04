@@ -4,23 +4,29 @@
 
 Project: Roblox Luau **Virus RNG / Lab Tycoon simulator**
 
-The game is playable and under active development.
+The game is playable and in a feature-stable state after four development pieces.
 
 Core systems currently implemented:
 
 - Rolling system
+  - Manual roll
+  - Auto-roll
 - Modifier system
 - Modifier-aware virus inventory
-- Modifier-aware equip / unequip
+- Modifier-aware equip / unequip with slot system
 - Virus world display
-- Modifier-aware data saving
-- Upgrades
-- Rebirth
+- Modifier-aware data saving via ProfileService
+- Lab upgrades
+- Rebirth / DNA system
+- Chambers UI
 - Daily quests
-- Black Market + Buffs
+- Black Market / serum buffs
 - Friend Boost
 - Offline earnings
-- Collection / Index UI with modifier filter tabs
+- Collection rewards
+- Skill tree
+- Server roll broadcast
+- 2x Luck event
 
 ---
 
@@ -56,11 +62,23 @@ New systems added in Piece 4:
 
 Final modifier visuals were intentionally deferred until base virus models exist.
 
+### 2x Luck Event
+
+Added a server-authoritative 2x Luck event system.
+
+Current behavior:
+
+- Event runs every hour.
+- Event lasts 10 minutes.
+- Luck event schedule uses UTC internally.
+- Player-facing wording should say “every hour” without promising a timezone.
+- Luck event banner/UI should be tested on mobile.
+
 ---
 
 ## Current Stable State
 
-Virus RNG is now in a **modifier-integrated state after Piece 4**.
+Virus RNG is now in a **modifier-integrated feature-stable state after Piece 4**.
 
 The modifier system is integrated into:
 
@@ -89,58 +107,7 @@ No intentional changes were made to:
 
 ---
 
-## Current Priorities
+## Current Stable Backup
 
-1. Fix `My Tycoon` asset structure so it contains the expected `Tycoon` folder.
-2. Test the modifier system in Roblox Studio play mode:
-   - Roll viruses
-   - Confirm modifiers can roll
-   - Confirm modifier odds scale with luck
-   - Confirm Normal rolls still work
-   - Confirm modified viruses save correctly
-   - Confirm legacy Normal viruses still load correctly
-   - Equip modified viruses
-   - Unequip modified viruses
-   - Confirm equipped stack keys work
-   - Confirm income multipliers apply
-   - Confirm collection tracking works per modifier
-   - Confirm modifier filter tabs display correct progress
-   - Confirm `OmegaStrain` and `Aggressive` broadcasts trigger
-3. Run mobile/tablet UI testing in Studio emulator.
-4. Add final visual modifier variants once base virus models exist.
-5. Continue to Piece 5 only after approval.
-
----
-
-## Known Issues
-
-- `My Tycoon` asset is missing the expected `Tycoon` folder.
-- `CollectorGui` template is missing and safely skipped.
-- Optional GUI templates are missing and safely skipped.
-- Modifier visual variants are not implemented yet.
-- Final base virus models/visuals are still deferred.
-- Collection / Index UI needs mobile testing because modifier filter tabs add more UI density.
-
----
-
-## Modifier System Summary
-
-### Modifier Roll Order
-
-Modifiers are rolled rarest-first.
-
-| Id | Display Name | Stat Multiplier | Base 1-in | Min 1-in |
-|---|---:|---:|---:|---:|
-| `OmegaStrain` | Omega Strain | 30.00x | 10,000 | 2,500 |
-| `Aggressive` | Aggressive | 15.00x | 2,500 | 600 |
-| `Armored` | Armored | 8.00x | 1,200 | 300 |
-| `Hybrid` | Hybrid | 5.00x | 600 | 150 |
-| `Adapted` | Adapted | 3.50x | 300 | 75 |
-| `Evolved` | Evolved | 2.50x | 150 | 40 |
-| `Mutant` | Mutant | 1.75x | 75 | 20 |
-| `Normal` | Normal | 1.00x | fallback | — |
-
-### Modifier Luck Formula
-
-```lua
-effectiveOneIn = math.max(MinOneInChance, BaseOneInChance / luckMultiplier)
+```txt
+VirusRNG_[LATEST_WORKING_BACKUP_NAME]
