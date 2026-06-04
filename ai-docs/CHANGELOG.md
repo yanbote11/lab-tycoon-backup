@@ -254,3 +254,19 @@ Earlier session fixes:
 - Final cleanup pass made no additional edits.
 - Manual testing still recommended for every door, mobile UI, auto-roll button, rejoin persistence, and high-rarity reveal behavior.
 - No architecture document update required.
+
+## 2026-06-03
+
+### Virus Roster Expansion
+- Expanded the canonical active roster in `ReplicatedStorage.Modules.VirusData` from 20 to exactly 50 unique virus/disease types.
+- Added 30 new stylized collectible entries across existing rarity tiers only: Common, Uncommon, Rare, Epic, Legendary, Mythic, and Celestial.
+- Preserved all existing virus names for save-data compatibility.
+- Kept the active virus schema unchanged: `Name`, `Tier`, `Description`, `DNAPoints`, `ResearchPoints`, `Cash`, and `NumericalRarity`.
+- Converted `ReplicatedStorage.LabTycoon.Modules.VirusData` into a compatibility wrapper generated from the canonical roster so duplicate data sources cannot drift.
+- Confirmed collection total resolves to 50 from `#VirusData.Viruses`.
+- Confirmed new entries use existing tier styling, fallback visual identity, and world-display fallback shapes without adding heavy assets or effects.
+
+### Safety Notes
+- No save data schema, rolling system, inventory system, collection system, or world display system rewrite was performed.
+- Virus identity remains based on saved virus name strings.
+- No new rarity tiers, polling loops, RenderStepped loops, permanent particle systems, or heavy models were added.
