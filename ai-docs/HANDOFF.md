@@ -40,3 +40,34 @@ https://github.com/yanbote11/lab-tycoon-backup
 - Workspace scripts (DoorsScript, Fan, Head scripts) are auto-generated from `ServerStorage.LabTycoonAssets` — do NOT back up individually
 - Superbullet logger scripts only run in Studio (guarded by `RunService:IsStudio()`)
 - Git remote: `https://github.com/yanbote11/lab-tycoon-backup`
+
+
+---
+
+## 3. `CHANGELOG.md`
+
+```md
+# CHANGELOG.md
+
+## 2026-06-04 — Piece 4 Modifier System
+
+### Summary
+
+Piece 4 added the full modifier system.
+
+This update introduced modifier rolling, modifier-aware inventory, modifier-aware equipment, modifier-aware collection tracking, modifier-aware earnings, and modifier UI support.
+
+The system was added while preserving legacy save compatibility.
+
+No final modifier visuals were added yet. Visual variants are deferred until base virus models exist.
+
+---
+
+## Added
+
+### ModificationData Module
+
+Added:
+
+```txt
+ReplicatedStorage.Modules.ModificationData
