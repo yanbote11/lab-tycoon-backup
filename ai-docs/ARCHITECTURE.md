@@ -1,77 +1,62 @@
-# Virus RNG Architecture
+# ARCHITECTURE.md
 
 ## Overview
 
 Virus RNG is a Roblox RNG/Tycoon game.
 
-Players:
+Players can:
 
 - Roll viruses
-- Collect viruses
+- Roll virus modifiers
+- Collect viruses and modifier variants
 - Equip viruses
-- Display viruses in the world
-- Earn currencies
+- Display equipped viruses in the world
+- Earn currencies boosted by virus stats and modifier multipliers
 - Buy upgrades
-- Rebirth for progression
+- Complete daily quests
+- Use Black Market buffs
+- Receive Friend Boost bonuses
+- Earn offline income
+- Rebirth for long-term progression
 
 ---
 
-## Core Systems
+## Latest Architecture Change
 
-### Data System
+### Piece 4 — Modifier System Integration
 
-Responsible for:
+Piece 4 added a modifier layer on top of the existing virus rolling system.
 
-- Loading player data
-- Saving player data
-- Currency storage
-- Inventory storage
-- Upgrade storage
+The modifier system affects:
 
-### Rolling System
-
-Responsible for:
-
-- Virus rolls
-- Luck calculations
-- Rarity calculations
-
-### Inventory System
-
-Responsible for:
-
-- Owned viruses
+- Roll results
+- Inventory entries
+- Collection progress
 - Equip / Unequip
-- Inventory UI
+- Equipped slots
+- Online earnings
+- Offline earnings
+- Quest rewards
+- Black Market scaling
+- Auto Equip Best
+- Roll result UI
+- Server broadcast UI
+- Collection / Index UI
 
-### Virus World Display
+The modifier system does **not** replace the base virus rolling system.
 
-Responsible for:
+The base roll still chooses the virus first.  
+The modifier roll happens after the base virus is chosen.
 
-- Showing equipped viruses
-- Animating displayed viruses
+Current roll flow:
 
-### UI System
-
-Responsible for:
-
-- Currency display
-- Inventory display
-- Upgrades
-- Rebirth
-
----
-
-## Performance Rules
-
-Avoid:
-
-- New RenderStepped loops
-- Frequent polling loops
-- Full UI rebuilds
-
-Prefer:
-
-- Events
-- Signals
-- Incremental updates
+```txt
+Player requests roll
+Server validates cooldown/cost
+Server rolls base virus
+Server rolls modifier using luckMultiplier
+Server grants rewards with modifier multiplier
+Server saves inventory entry
+Server updates VirusCollection
+Server sends RollResult payload to client
+Client displays virus + modifier result
