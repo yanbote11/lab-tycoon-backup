@@ -270,3 +270,24 @@ Earlier session fixes:
 - No save data schema, rolling system, inventory system, collection system, or world display system rewrite was performed.
 - Virus identity remains based on saved virus name strings.
 - No new rarity tiers, polling loops, RenderStepped loops, permanent particle systems, or heavy models were added.
+# CHANGELOG.md
+
+## Today’s Additions
+- Added Collection selected-virus persistence so details remain visible across UI refreshes.
+
+## Changes
+- Roll/Cultivate tab now resets shared content scroll to the top and disables scrolling while active.
+- Collection detail panel is rendered outside the scrolling content area so it remains visible while the collection list is scrolled.
+
+## Fixes
+- Fixed Roll tab inheriting Collection tab scroll position.
+- Fixed Collection detail appearing outside the user’s visible area after scrolling.
+- Fixed Collection detail resetting to “Select a virus” shortly after selecting a virus.
+
+## Performance Improvements
+- Avoided adding polling or continuous UI update loops.
+- Collection detail restore uses lightweight state and only runs during collection rebuilds.
+
+## Notes
+- No architecture changes were made.
+- Existing missing optional GUI/template warnings remain unchanged.
