@@ -291,3 +291,83 @@ Earlier session fixes:
 ## Notes
 - No architecture changes were made.
 - Existing missing optional GUI/template warnings remain unchanged.
+# Virus RNG Changelog
+
+## 2026-06-04
+
+### Added
+
+- `ServerScriptService.LuckEventService` (new Script):
+  - Server-authoritative 2x Luck event, active every hour at :00 for 10 minutes (UTC).
+  - Creates `LuckEventBridge` BindableFunction in ServerScriptService at runtime.
+  - Creates `ReplicatedStorage.LabTycoon.Remotes.LuckEventStatus` RemoteEvent at runtime.
+  - Sets `VirusService.EventLuckMultiplier` (1 or 2) every second via task loop.
+  - Broadcasts full event state to all clients on state change and every 5 seconds.
+  - Fires current state to late-joining players after a 2-second wait.
+- `VirusController.EventLuckMultiplier` field — cached client-side event multiplier, kept current by `LuckEventStatus` listener.
+- `setupLuckEventUI()` in `UILogic` — small event banner (ScreenGui, `ResetOnSpawn=false`):
+  - Active: green banner "⚡ 2x Luck Event Active!" + "Ends in MM:SS".
+  - Inactive: muted banner "Next 2x Luck in H:MM:SS".
+  - Heartbeat-driven text-only updates; no layout rebuilds; proper connection cleanup.
+
+### Changes
+
+- `VirusService.GetEffectiveLuck` — multiplies final luck by `VirusService.EventLuckMultiplier`; also reads `LuckEventBridge` directly as authoritative fallback.
+- `ServerBootstrapper` — added `getEventLuckMult()` helper (reads `LuckEventBridge`); applied to all 4 fallback inline luck sites: manual roll virus, manual roll modifier, auto-roll virus, auto-roll modifier.
+- `VirusController.GetLuckPercent()` — multiplies by `EventLuckMultiplier` so the stats panel reflects active luck event.
+- `UILogic` inventory sort (`rebuildVirusList`) — sort score now uses `ModificationData.ApplyStat`-applied stats (effective RP, Cash, DNA) instead of base stats plus a flat modifier bonus. Modified viruses now sort correctly relative to unmodified viruses.
+- `VirusVisualIdentity.LoreByVirus` — all 50 virus descriptions updated to standardized format: what the disease is, worldwide case count (WHO/CDC), fatality rate. Fictional viruses labelled as fictional. Previously only 20 of 50 viruses had lore entries.
+
+### Fixes
+
+- Fixed inventory sort: modified viruses were never correctly ranked against unmodified viruses because the modifier was added as a flat score bonus rather than multiplied into the actual stats.
+- Fixed `VirusController` module crash: `EventLuckMultiplier` field assignment and listener `do..end` block were injected before `local VirusController = {}` was defined, causing a nil-index error on load that broke all UI tabs.
+- Fixed luck event not applying to modifier rolls in `ServerBootstrapper` inline path.
+- Fixed stats panel ("Luck Bonus") not reflecting active luck event.
+- Fixed `GetEffectiveLuck` potential miss on first tick before `LuckEventService` loop sets the field.
+
+### Performance
+
+- No negative performance impacts.
+- Luck event loop: 1s tick, arithmetic only; broadcasts at most every 5s.
+- Sort fix is same O(n) complexity; `ApplyStat` replaces a simple multiply.
+
+### Notes
+
+- Luck event multiplier is never saved to player data.
+- Luck event stacking: `FinalLuck = RebirthMult * LabBonus * CollectionLuck * (1 + SkillLuck) * (1 + SerumBonus + FriendBoost) * EventMult`.
+- Client only receives display state from `LuckEventStatus`; all luck math is server-side.
+- Auto-roll fallback path still does not include `ExternalLuckBonus` — pre-existing gap, not introduced this session.
+- `My Tycoon` asset structure fix still pending; world virus display not re-tested.
+
+## 2026-06-02
+
+### Added
+
+- AI documentation system: HANDOFF.md, PROJECT_STATE.md, ARCHITECTURE.md, AI_RULES.md, CHANGELOG.md.
+- Lightweight shared UI styling helpers in `StarterGui.LabTycoonUI.UILogic`.
+
+### Changes
+
+- Updated main roll UI, currency/stat display, Chambers/inventory row, and compact UI styling.
+- Chambers UI handles sparse, count-map, and named-entry inventory formats.
+- Superbullet logger disables when backend unreachable.
+- Tycoon unlock presentation skips expensive client construction animation path.
+
+### Fixes
+
+- Fixed stale `reportedEquippedByPlayer` reference in `LabPlotAndVirusWorldService`.
+- Fixed Chambers list rendering empty despite saved inventory existing.
+- Fixed Chambers toolbar controls appearing without handlers.
+- Fixed missing virus definitions showing as broken inventory rows.
+- Fixed repeated Superbullet HTTP failure log spam during Studio testing.
+- Added safeguards for missing tycoon asset folders and templates.
+
+### Performance
+
+- Removed client world-display polling.
+- Replaced with server-side equipment commit sync.
+- Reduced world virus visual complexity.
+- Disabled tycoon spotlights and excess display lighting.
+- Removed Superbullet warning pulse tween loop.
+- Reduced UI safety refresh frequency.
